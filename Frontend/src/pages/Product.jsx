@@ -6,7 +6,7 @@ import RelatedProduct from "../components/RelatedProduct";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
@@ -73,7 +73,9 @@ const Product = () => {
                 <button
                   onClick={() => setSize(item)}
                   className={`border py-2 px-4 bg-gray-100 ${
-                    item === size ? "border-orange-500 ring-1 ring-orange-300" : ""
+                    item === size
+                      ? "border-orange-500 ring-1 ring-orange-300"
+                      : ""
                   }`}
                   key={index}
                 >
@@ -84,10 +86,8 @@ const Product = () => {
           </div>
 
           <button
-            className={`bg-black text-white py-3 px-8 text-sm ${
-              !size ? "opacity-50 cursor-not-allowed" : "active:bg-gray-700"
-            }`}
-            disabled={!size}
+            onClick={() => addToCart(productId, size)}
+            className="bg-black text-white py-3 px-8 text-sm active:bg-gray-700"
           >
             ADD TO CART
           </button>
