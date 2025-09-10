@@ -3,7 +3,7 @@ import { assets } from '../assets/assets';
 
 const Footer = () => {
   return (
-    <div className="mt-40 text-sm text-gray-600">
+    <div className="mt-20 text-sm text-gray-600">
       {/* Grid Content */}
       <div className="flex flex-col sm:grid sm:grid-cols-3 gap-14">
         
