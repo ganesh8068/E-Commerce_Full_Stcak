@@ -21,7 +21,7 @@ const loginUser = async (req, res) => {
 
     if (isMatch) {
       const token = createToken(user._id);
-      res.json({success:true, token});
+      res.json({ success: true, token });
     } else {
       return res.json({ success: false, message: "Invalid credentials" });
     }
@@ -76,7 +76,18 @@ const registerUser = async (req, res) => {
 
 // ---------------Route for admin login---------------
 const adminLogin = async (req, res) => {
-  res.json({ msg: "admin login working" });
+  try {
+    const { email, password } = req.body;
+    if ( email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD ) {
+      const token = jwt.sign(email + password, process.env.JWT_SECRET);
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, message: "not admin" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "not admin" });
+  }
 };
 
 export { loginUser, registerUser, adminLogin };
