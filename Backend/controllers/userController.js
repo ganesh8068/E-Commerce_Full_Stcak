@@ -82,11 +82,11 @@ const adminLogin = async (req, res) => {
       const token = jwt.sign(email + password, process.env.JWT_SECRET);
       res.json({ success: true, token });
     } else {
-      res.json({ success: false, message: "not admin" });
+      res.json({ success: false, message: "Enter admin credential" });
     }
   } catch (error) {
     console.log(error);
-    res.json({ success: false, message: "not admin" });
+    res.json({ success: false, message: "Enter admin credential" });
   }
 };
 
